@@ -1,0 +1,3 @@
+.q-toggleswitch__handle:after {
+    transition: left 0.25s ease-in-out;
+}

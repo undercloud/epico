@@ -1,0 +1,3 @@
+.q-input.q-input--focus {
+	transition: border 0.5s ease-in-out;
+}

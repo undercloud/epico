@@ -1,0 +1,8 @@
+.q-button {
+	display: inline-block;
+	background-color: rgb(38, 166, 154);
+	display: inline-block;
+	border: none;
+	color: #fff;
+	padding: 10px 20px;
+}

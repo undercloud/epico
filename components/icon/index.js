@@ -1,16 +1,26 @@
+import QValidator from './../validator';
+
 var QIcon = Paysage.createClass({
 	props: {
 		name: {
 			type: String,
-			required: true
+			required: true,
+			validator: QValidator.isNotEmpty
 		},
 		size: {
 			type: String,
-			default: 'default'
+			default: 'default',
+			validator: function (v) {
+				return [
+					'mini','small','default',
+					'medium','big','huge'
+				].includes(v);
+			}
 		},
 		pack: {
 			type: String,
-			default: 'default'
+			default: 'default',
+			validator: QValidator.isNotEmpty
 		}
 	},
 	get iconName () {

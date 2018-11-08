@@ -1,3 +1,4 @@
+import QValidator from './../validator';
 
 var QAbstractInput = {
 	abstractProps: {
@@ -13,8 +14,14 @@ var QAbstractInput = {
 			autofocus: [Boolean, String],
 			pattern: String,
 			readonly: [Boolean, String],
-			maxlength: Number,
-			minlength: Number,
+			minlength: {
+				type: [Number, String],
+				validator: QValidator.isPositiveInt
+			},
+			maxlength: {
+				type: [Number, String] ,
+				validator: QValidator.isPositiveInt
+			},
 			placeholder: String,
 		});
 	},

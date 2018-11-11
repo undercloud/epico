@@ -1,4 +1,5 @@
 import QAbstractInput from './../abstractinput';
+import QValidator from './../validator';
 
 var QToggleSwitch = Paysage.createClass({
 	model: {
@@ -6,8 +7,11 @@ var QToggleSwitch = Paysage.createClass({
 	    event: 'change'
 	},
 	props: QAbstractInput.extendsProps({
-		checked: Boolean,
-		label: String
+		checked: [Boolean, String],
+		label: String,
+		validator (v) {
+			return QValidator.isBooleanOr(v, 'checked');
+		}
 	}),
 	draw () {
 		return (

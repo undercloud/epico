@@ -1,4 +1,5 @@
 import QAbstractInput from './../abstractinput';
+import QValidator from './../validator';
 
 var QCheckBox = Paysage.createClass({
 	model: {
@@ -7,7 +8,10 @@ var QCheckBox = Paysage.createClass({
 	},
 	props: QAbstractInput.extendsProps({
 		checked: [Boolean, String],
-		label: String
+		label: String,
+		validator (v) {
+			return QValidator.isBooleanOr(v, 'checked');
+		}
 	}),
 	draw () {
 		return (

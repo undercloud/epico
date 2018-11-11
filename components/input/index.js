@@ -10,28 +10,42 @@ var QInput = Paysage.createClass({
 		type: {
 			type: String,
 			default: 'text',
-			validator: function(value) {
+			validator (value) {
 				return [
 					'text','password','search',
 					'date','time','datetime',
-					'number','email','tel','url'
+					'number','email','tel','url',
+					'hidden'
 				].includes(value);
 			}
 		},
 		multiline: {
 			type: [Boolean, String],
-			default: false
+			default: false,
+			validator: QValidator.isBoolean
 		},
 		rows: {
 			type: [Number, String],
 			default: 5,
 			validator: QValidator.isPositiveInt
 		},
+		step: {
+			type: [Number, String],
+			validator: QValidator.isPositiveNumeric
+		},
+		min: {
+			type: [Number, String],
+			validator: QValidator.isNumeric
+		},
+		max: {
+			type: [Number, String],
+			validator: QValidator.isNumeric
+		},
 		showablePassword: {
  			type: [Boolean, String],
- 			default: false
- 		},
- 		vValidate: String
+ 			default: false,
+ 			validator: QValidator.isBoolean
+ 		}
 	}),
 	get dynamicType() {
 		if (this.showablePassword) {
@@ -57,20 +71,19 @@ var QInput = Paysage.createClass({
 		return ['search','url','tel','email','date','time','datetime','password'].includes(this.type);
 	},
 	get defaultSlotIcon () {
-		return epico.config.QInput.icons[this.type];
-	},
-	failDataInput: function () {
-		console.log(arguments)
+		return window.epico.config.QInput.icons[this.type];
 	},
 	mounted () {
- 		// console.log(this,this.$refs)
+ 		//console.log(this,this.$refs)
 	},
 	draw () {
 		var pairs = QAbstractInput.draw(QAbstractInput.abstractEditableProps, {
 			'ref': 'input',
-			'v-validate': "'email'",
 			'class': 'q-input__input',
 			':type': 'dynamicType',
+			':min': 'min',
+			':max': 'max',
+			':step': 'step',
 			'@change': "$emit('change', $event.target.value, $event)",
 			'@input': "$emit('input', $event.target.value, $event)",
 			'@blur': "hasFocus = false; $emit('blur', $event)",
@@ -86,10 +99,10 @@ var QInput = Paysage.createClass({
 		});
 
 		return (
-			`<span class="q-input" :class="{'q-input--focus': hasFocus}">
+			`<span class="q-input" :class="{'q-input--focus': hasFocus}" v-show="!('hidden' === dynamicType)">
 				<template v-if="multiline">
 					<textarea ` + pairs +` :rows="rows"></textarea>
-					<span v-if="maxlength" class="q-input__maxlength"> {{ value.length }} / {{ maxlength }}</span>
+					<span v-if="maxlength" class="q-input__maxlength">{{ value.length }} / {{ maxlength }}</span>
 				</template>
 				<template v-else>
 					<span class="q-input__flex">
@@ -109,7 +122,6 @@ var QInput = Paysage.createClass({
 	 					</span>
 	 				</span>
 				</template>
-				<span>{{ errors.first('email') }}</span>
 			</span>`
 		);
 	}

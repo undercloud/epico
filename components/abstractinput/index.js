@@ -4,25 +4,53 @@ var QAbstractInput = {
 	abstractProps: {
 		id: String,
 		name: String,
-		disabled: [Boolean, String],
-		required: [Boolean, String],
-		value: String
+		disabled: {
+			type: [Boolean, String],
+			validate (v) {
+				return QValidator.isBooleanOr(v, 'disabled'); 
+			}
+		},
+		required: {
+			type: [Boolean, String],
+			validate (v) {
+				return QValidator.isBooleanOr(v, 'required');
+			}
+		},
+		value: [String, Number]
 	},
 	get abstractEditableProps () {
 		return Object.assign({}, this.abstractProps, {
-			autocomplete: [Boolean, String],
-			autofocus: [Boolean, String],
+			autocomplete:  [Boolean, String],
+			autofocus: {
+				type: [Boolean, String],
+				validate (v) {
+					return QValidator.isBooleanOr(v, 'autofocus');
+				}
+			},
 			pattern: String,
-			readonly: [Boolean, String],
+			readonly: {
+				type: [Boolean, String],
+				validate (v) {
+					return QValidator.isBooleanOr(v, 'readonly');	
+				}
+			},
 			minlength: {
 				type: [Number, String],
 				validator: QValidator.isPositiveInt
 			},
 			maxlength: {
-				type: [Number, String] ,
+				type: [Number, String],
 				validator: QValidator.isPositiveInt
 			},
 			placeholder: String,
+			spellcheck: {
+				type: [Boolean, String],
+				validator: QValidator.isBoolean
+			}, 
+			tabindex: {
+				type: [Number, String],
+				validator: QValidator.isPositiveInt
+			}
 		});
 	},
 	extendsProps (props) {

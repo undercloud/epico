@@ -2,7 +2,10 @@ var QButton = Paysage.createClass({
 	props: {
 		type: {
 			type: String,
-			default: 'button'
+			default: 'button',
+			validator (v) {
+				return ['button','submit','reset'].includes(v);
+			}
 		}
 	},
 	draw () {

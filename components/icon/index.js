@@ -10,11 +10,8 @@ var QIcon = Paysage.createClass({
 		size: {
 			type: String,
 			default: 'default',
-			validator: function (v) {
-				return [
-					'mini','small','default',
-					'medium','big','huge'
-				].includes(v);
+			validator (v) {
+				return ['mini','small','default','medium','big','huge'].includes(v);
 			}
 		},
 		pack: {

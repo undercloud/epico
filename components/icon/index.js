@@ -34,7 +34,7 @@ var QIcon = Paysage.createClass({
 	draw () {
 		return (
 			`<span class="q-icon" :class="iconSize">
-				<svg xmlns="http://www.w3.org/2000/svg">
+				<svg class="q-icon__svg" xmlns="http://www.w3.org/2000/svg">
 					<use
 						xmlns:xlink="http://www.w3.org/1999/xlink"
 						:xlink:href="iconName">

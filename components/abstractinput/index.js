@@ -45,8 +45,9 @@ var QAbstractInput = {
 			placeholder: String,
 			spellcheck: {
 				type: [Boolean, String],
-				validator: QValidator.isBoolean
-			}, 
+				validator: QValidator.isBoolean,
+				default: null
+			},
 			tabindex: {
 				type: [Number, String],
 				validator: QValidator.isPositiveInt

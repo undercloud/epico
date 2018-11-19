@@ -28,6 +28,9 @@ var QRange = Paysage.createClass({
 			validator: QValidator.isBoolean
 		}
 	}),
+	get formattedValue () {
+		return new Intl.NumberFormat().format(this.value)
+	},
 	get decorFillWidth () {
 		return (((this.value - this.min) / (this.max - this.min)) * 100) + '%';
 	},
@@ -59,7 +62,7 @@ var QRange = Paysage.createClass({
 					'@input': "$emit('input', $event.target.value, $event)"
 				}) + ' />' +
 				`<span class="q-range__fill-range" :style="{width: decorFillWidth}"></span>
-				<span class="q-range__hint-value" :class="{'q-range__hint-value--visible': ('true' == '' + hintVisible)}" ref="hint" :style="{left: decorHintAlign()}">{{ value }}</span>
+				<span class="q-range__hint-value" :class="{'q-range__hint-value--visible': ('true' == '' + hintVisible)}" ref="hint" :style="{left: decorHintAlign()}">{{ formattedValue }}</span>
 			</span>`
 		)
 	}

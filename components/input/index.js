@@ -2,6 +2,7 @@ import QAbstractInput from './../abstractinput';
 import QValidator from './../validator';
 
 var QInput = Paysage.createClass({
+	window: window,
 	model: {
 	    prop: 'value',
 	    event: 'input',
@@ -22,7 +23,9 @@ var QInput = Paysage.createClass({
 		multiline: {
 			type: [Boolean, String],
 			default: false,
-			validator: QValidator.isBoolean
+			validator (v) {
+				return QValidator.isBooleanOr(v, 'multiline');	
+			}
 		},
 		rows: {
 			type: [Number, String],
@@ -47,6 +50,17 @@ var QInput = Paysage.createClass({
  			validator: QValidator.isBoolean
  		}
 	}),
+	constructor () {
+		this.hasFocus = false;
+		this.showPassword = false;
+	},
+	get readOnlyValue () {
+		return this.value;
+	},
+	set readOnlyValue (value) {
+		this.$emit('change', value);
+		this.$emit('input', value);
+	},
 	get dynamicType() {
 		if (this.showablePassword) {
 			if (this.showPassword) {
@@ -62,8 +76,6 @@ var QInput = Paysage.createClass({
 
 		return this.type;
 	},
-	hasFocus: false,
-	showPassword: false,
 	togglePassView () {
 		this.showPassword = !this.showPassword;
 	},
@@ -73,17 +85,12 @@ var QInput = Paysage.createClass({
 	get defaultSlotIcon () {
 		return window.epico.config.QInput.icons[this.type];
 	},
-	mounted () {
- 		//console.log(this,this.$refs)
+	get isDateType () {
+		return 'date' == this.type || 'time' == this.type || 'datetime' == this.type;
 	},
 	draw () {
 		var pairs = QAbstractInput.draw(QAbstractInput.abstractEditableProps, {
 			'ref': 'input',
-			'class': 'q-input__input',
-			':type': 'dynamicType',
-			':min': 'min',
-			':max': 'max',
-			':step': 'step',
 			'@change': "$emit('change', $event.target.value, $event)",
 			'@input': "$emit('input', $event.target.value, $event)",
 			'@blur': "hasFocus = false; $emit('blur', $event)",
@@ -101,7 +108,7 @@ var QInput = Paysage.createClass({
 		return (
 			`<span class="q-input" :class="{'q-input--focus': hasFocus}" v-show="!('hidden' === dynamicType)">
 				<template v-if="multiline">
-					<textarea ` + pairs +` :rows="rows"></textarea>
+					<textarea ` + pairs +` class="q-input__input" :rows="rows"></textarea>
 					<span v-if="maxlength" class="q-input__maxlength">{{ value.length }} / {{ maxlength }}</span>
 				</template>
 				<template v-else>
@@ -112,14 +119,39 @@ var QInput = Paysage.createClass({
 							<slot :hasFocus="hasFocus">
 								<q-icon v-if="hasDefaultSlot" :name="defaultSlotIcon"></q-icon>
 							</slot>
-						</span>
-						<input ` + pairs + ` />
+						</span> 
+						<template v-if="isDateType">
+							<q-datetime-helper
+								inputClass="q-input__input" 
+								v-model="readOnlyValue"
+								:type="type" 
+								:minDatetime="min" 
+								:maxDatetime="max"
+								@focus="hasFocus = true;"
+								@input="hasFocus = false;">
+							</q-datetime-helper>
+						</template>
+						<template v-else>
+							<input 
+								class="q-input__input"
+								:type="dynamicType"
+								:min="min"
+								:max="max"
+								:step="step" ` + 
+								pairs + ` />
+						</template>
 						<span  
 							v-if="showablePassword"
 							@click="togglePassView" 
 							class="q-input__post-content q-input__show-password">
-	 						<q-icon :name="showPassword ? epico.config.QInput.showablePassword.show : epico.config.QInput.showablePassword.hide"></q-icon>
+	 						<q-icon :name="showPassword ? window.epico.config.QInput.showablePassword.show : window.epico.config.QInput.showablePassword.hide"></q-icon>
 	 					</span>
+	 					<span
+							v-if="('search' === dynamicType || isDateType) && value.length"
+							@click="$refs.input.value = '';$emit('change', '', $event);$emit('input', '', $event)"
+							class="q-input__post-content q-input__clear">
+							<q-icon :name="window.epico.config.QInput.searchClose"></q-icon>
+						</span>
 	 				</span>
 				</template>
 			</span>`

@@ -4,39 +4,9 @@
 	vertical-align: middle;
 }
 
-.q-icon > svg {
+.q-icon__svg {
 	position: relative;
+	vertical-align: top;
 	width: 100%;
 	height: 100%;
-	vertical-align: top;
-}
-
-.q-icon--size-mini {
-	width: 12px;
-	height: 12px;
-}
-
-.q-icon--size-small {
- width: 16px;
- height: 16px;
-}
-
-.q-icon--size-default {
-	width: 20px;
-	height: 20px;
-}
-
-.q-icon--size-medium {
-	width: 32px;
-	height: 32px;
-}
-
-.q-icon--size-big {
-	width: 48px;
-	height: 48px;
-}
-
-.q-icon--size-huge {
-	width: 72px;
-	height: 72px;
 }

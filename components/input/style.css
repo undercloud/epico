@@ -1,13 +1,18 @@
 .q-input {
+    box-sizing: border-box;
 	position: relative;
-	display: inline-block;
-	border-bottom: 2px solid #eee;
-	margin-bottom: 10px;
+	display: block;
+	background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 0 0.5em;
+    border-radius: 3px;
+    line-height: 18px;
 }
 
 .q-input__flex {
     display: flex;
     align-items: center;
+	border-radius: inherit;
 }
 
 .q-input__input {
@@ -17,9 +22,10 @@
     border: none;
     box-sizing: border-box;
     outline: none;
-    padding: 10px 0;
+    padding: 9px 0;
     vertical-align: top;
     flex: 1 1 auto;
+	background-color: transparent;
 }
 
 .q-input__pre-content,
@@ -29,33 +35,44 @@
 }
 
 .q-input__pre-content {
-	margin-right: 10px;
+	margin-right: 0.5em
 }
 
 .q-input__post-content {
-	margin-left: 10px;
+	margin-left: 0.5em;
 }
 
 .q-input--focus {
-	border-bottom-color: #26a69a; 
+	border-color: #26a69a; 
 }
 
 .q-input__input:disabled {
 	cursor: not-allowed;
 }
 
-.q-input__show-password {
+.q-input__show-password,
+.q-input__clear {
 	cursor: pointer;
 }
 
 .q-input__maxlength {
-	margin-top: 1em;
-	display: block;
-	text-align: right;
+    margin: 0.5em 0;
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 textarea.q-input__input {
 	resize: vertical;
+}
+
+.q-input .vdatetime {
+	width: 100%;
+}
+
+.q-input__input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
 }
 
 input[placeholder] { text-overflow: ellipsis;}

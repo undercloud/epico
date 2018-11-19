@@ -1,0 +1,3 @@
+.q-progress__fill {
+	transition: width 0.3s ease-in-out;
+}

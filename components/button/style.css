@@ -1,9 +1,107 @@
 .q-button {
-	display: inline-block;
-	background-color: rgb(38, 166, 154);
-	display: inline-block;
-	border: none;
-	color: #fff;
-	padding: 10px 20px;
-	position: relative;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 3px;
+  color: #fff;
+  padding: 6px 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.q-button--full {
+  width: 100%;
+}
+
+.q-button--rounded {
+  border-radius: 22px;
+}
+
+/*
+.q-button--link,
+.q-button--outline {
+  background-color: #fff;
+  color: #26a69a;
+}
+
+.q-button--link {
+  border: none;
+}
+
+.q-button--link:hover {
+  text-decoration: underline;
+}
+*/
+
+/*
+.q-button:not(.q-button--link):not(.q-button--outline):not(:disabled),
+.q-button--outline:hover {
+  background-color: #26a69a;
+  border-color: #26a69a;
+}
+
+.q-button:disabled {
+  cursor: not-allowed;
+  background-color: #ddd;
+  border-color: #ddd;
+}
+
+.q-button--outline:disabled,
+.q-button--link:disabled {
+  color: #ddd;
+  background: none;
+}
+*/
+
+.q-buttongroup {
+  display: flex;
+}
+
+.q-buttongroup--stack {
+  display: inline-block;
+}
+
+.q-buttongroup > .q-button {
+  flex-grow: 1;
+}
+
+.q-buttongroup:not(.q-buttongroup--stack) > .q-button:not(:last-child) {
+  border-right: 1px solid red;
+}
+
+.q-buttongroup--stack > .q-button:not(:last-child) {
+  border-bottom: 1px solid red;
+}
+
+.q-buttongroup:not(.q-buttongroup--stack) > .q-button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.q-buttongroup:not(.q-buttongroup--stack) > .q-button:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.q-buttongroup--stack > .q-button:first-child {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.q-buttongroup--stack > .q-button:last-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.q-buttongroup > .q-button:not(:last-child):not(:first-child) {
+  border-radius: 0;
+}
+
+.q-button {
+  background-color: #26a69a;
 }

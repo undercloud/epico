@@ -1,0 +1,45 @@
+.q-progress:not(.q-progress--circle) {
+  background: #ddd;
+  border-radius: 2px;
+}
+
+.q-progress__fill {
+  background-color: #26a69a;
+  height: 5px;
+}
+
+.q-progress--circle,
+.q-progress__clipper,
+.q-progress__fill-bar,
+.q-progress__first-50-bar,
+.q-progress--circle .q-progress__label {
+  width: 100px;
+  height: 100px;
+}
+
+.q-progress--circle {
+  line-height: 100px;
+  background-color: #ddd;
+}
+
+.q-progress--circle:after {
+  top: 5px;
+  left: 5px;
+  width: 90px;
+  height: 90px;
+  background-color: #fff;
+}
+
+.q-progress__clipper,
+.q-progress__first-50-bar {
+  clip: rect(0, 100px, 100px, 50px);
+}
+
+.q-progress__first-50-bar {
+  background-color: #26a69a;
+}
+
+.q-progress__fill-bar {
+  clip: rect(0, 50px, 100px, 0);
+  border: 5px solid #26a69a;
+}

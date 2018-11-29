@@ -1,0 +1,10 @@
+.q-labledinput {
+  background: #dfdfdf;
+  border-radius: 3px;
+}
+
+.q-labledinput__before,
+.q-labledinput__after {
+  padding: 0 0.5em;
+  min-width: 2em;
+}

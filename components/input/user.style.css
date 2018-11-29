@@ -1,0 +1,31 @@
+.q-input {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  padding: 0 0.5em;
+  border-radius: 3px;
+  line-height: 18px;
+}
+
+.q-input__input {
+  padding: 9px 0;
+}
+
+.q-input__pre-content {
+  margin-right: 0.5em;
+}
+
+.q-input__post-content {
+  margin-left: 0.5em;
+}
+
+.q-input--focus {
+  border-color: #26a69a;
+}
+
+.q-input__maxlength {
+  margin: 0.5em 0;
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  font-weight: bold;
+}

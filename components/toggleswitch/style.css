@@ -1,12 +1,12 @@
 .q-toggleswitch {
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
 }
 
 .q-toggleswitch__flex {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .q-toggleswitch__input {
@@ -18,76 +18,39 @@
 }
 
 .q-toggleswitch__handle {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    border-radius: 14px;
-    flex: 0 0 auto;
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.q-toggleswitch__label {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.5em;
+  flex: 1 1 auto;
 }
 
 .q-toggleswitch__handle:after,
 .q-toggleswitch__handle:before {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: block;
-    margin: auto;
-    content: "";
-    border-radius: 20px;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  margin: auto;
 }
 
 .q-toggleswitch__handle:before {
-    width: 100%;
-    height: 10px;
-    background: #ddd;
+  width: 100%;
 }
 
 .q-toggleswitch__handle:after {
-    width: 18px;
-    height: 18px;
-    left: 0;
-    right: auto;
-    border: 1px solid #ddd;
-    background: #fff;
+  left: 0;
+  right: auto;
 }
 
 .q-toggleswitch__input:disabled + .q-toggleswitch__handle {
-    cursor: not-allowed;
-}
-
-.q-toggleswitch__input:disabled + .q-toggleswitch__handle:before {
-    background: #eee;
-}
-
-.q-toggleswitch__input:disabled + .q-toggleswitch__handle:after {
-    border-color: #eee;
-}
-
-.q-toggleswitch__input:checked + .q-toggleswitch__handle:before {
-    background: #ccc;
-}
-
-.q-toggleswitch__input:checked + .q-toggleswitch__handle:after {
-    left: 20px;
-    background: #26a69a;
-    border-color: #26a69a;
-}
-
-.q-toggleswitch__input:disabled:checked + .q-toggleswitch__handle:before {
-    background-color: #eee;
-}
-
-.q-toggleswitch__input:disabled:checked + .q-toggleswitch__handle:after {
-    background-color: #ddd;
-    border-color: #ddd;
-}
-
-.q-toggleswitch__label {
-	position: relative;
-	display: inline-block;
-    margin-left: 1em;
-    flex: 1 1 auto;
+  cursor: not-allowed;
 }

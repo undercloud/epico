@@ -1,10 +1,14 @@
-import QAbstractInput from './../abstractinput';
-import QValidator from './../validator';
+import QAbstractInput from './../abstractinput'
+import QValidator from './../validator'
+import QFilters from './../filters'
 
 var QRange = Paysage.createClass({
 	model: {
 	    prop: 'value',
 	    event: 'input',
+	},
+	filters: {
+		numberFormatter: QFilters.numberFormatter
 	},
 	props: QAbstractInput.extendsEditableProps({
 		step: {
@@ -28,25 +32,27 @@ var QRange = Paysage.createClass({
 			validator: QValidator.isBoolean
 		}
 	}),
-	get formattedValue () {
-		return new Intl.NumberFormat().format(this.value)
-	},
 	get decorFillWidth () {
-		return (((this.value - this.min) / (this.max - this.min)) * 100) + '%';
+		var expression = (((this.value - this.min) / (this.max - this.min)) * 100)
+        if (isNaN(expression) || !isFinite(expression)) {
+            expression = 0
+        }
+
+        return  expression
 	},
 	decorHintAlign () {
-		var w = this.decorFillWidth.replace('%','');
-		var s = 20 / 100 * w - 10;
+		var w = this.decorFillWidth
+		var s = 20 / 100 * w - 10
 		var h = (
 			this.$refs.hint
 				? this.$refs.hint.offsetWidth
 				: 0
-		);
+		)
 
-		return 'calc(' + w + '% - ' + (h / 2) + 'px - ' + s + 'px)';
+		return 'calc(' + w + '% - ' + (h / 2) + 'px - ' + s + 'px)'
 	},
 	mounted: function () {
-		this.$refs.hint.style.left = this.decorHintAlign();
+		this.$refs.hint.style.left = this.decorHintAlign()
 	},
 	draw () {
 		return (
@@ -60,12 +66,16 @@ var QRange = Paysage.createClass({
 					':step': 'step',
 					'@change': "$emit('change', $event.target.value, $event)",
 					'@input': "$emit('input', $event.target.value, $event)"
-				}) + ' />' +
-				`<span class="q-range__fill-range" :style="{width: decorFillWidth}"></span>
-				<span class="q-range__hint-value" :class="{'q-range__hint-value--visible': ('true' == '' + hintVisible)}" ref="hint" :style="{left: decorHintAlign()}">{{ formattedValue }}</span>
+				}) + ` />
+				<span class="q-range__fill-range" :style="{width: decorFillWidth + '%'}"></span>
+				<span
+                    class="q-range__hint-value"
+                    :class="{'q-range__hint-value--visible': ('true' == '' + hintVisible)}"
+                    ref="hint"
+                    :style="{left: decorHintAlign()}">{{ value | numberFormatter }}</span>
 			</span>`
 		)
 	}
 })
 
-export default QRange;
+export default QRange

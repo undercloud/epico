@@ -1,49 +1,48 @@
 .q-input {
-    box-sizing: border-box;
-	position: relative;
-	display: block;
-	background-color: #f9f9f9;
-    border: 1px solid #eee;
-    padding: 0 0.5em;
-    border-radius: 3px;
-    line-height: 18px;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
 }
 
 .q-input__flex {
-    display: flex;
-    align-items: center;
-	border-radius: inherit;
+  display: flex;
+  align-items: center;
+  border-radius: inherit;
+}
+
+.q-input__wrap-content {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.q-input__formatter-value {
+  pointer-events: none;
+  position: absolute;
+  height: 1em;
+  line-height: 1;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  left: 0;
+  max-width: calc(100% - 15px);
+  overflow: hidden;
 }
 
 .q-input__input {
-	position: relative;
-    display: inline-block;
-    width: 100%;
-    border: none;
-    box-sizing: border-box;
-    outline: none;
-    padding: 9px 0;
-    vertical-align: top;
-    flex: 1 1 auto;
-	background-color: transparent;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  outline: none;
+  background-color: transparent;
 }
 
 .q-input__pre-content,
 .q-input__post-content {
 	display: inline-block;
 	flex: 0 0 auto;
-}
-
-.q-input__pre-content {
-	margin-right: 0.5em
-}
-
-.q-input__post-content {
-	margin-left: 0.5em;
-}
-
-.q-input--focus {
-	border-color: #26a69a; 
 }
 
 .q-input__input:disabled {
@@ -53,14 +52,6 @@
 .q-input__show-password,
 .q-input__clear {
 	cursor: pointer;
-}
-
-.q-input__maxlength {
-    margin: 0.5em 0;
-    display: block;
-    text-align: right;
-    font-size: 12px;
-    font-weight: bold;
 }
 
 textarea.q-input__input {
@@ -73,6 +64,14 @@ textarea.q-input__input {
 
 .q-input__input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
+}
+
+.q-input__input[type="number"]:not(:focus) {
+  color: transparent;
+}
+
+.q-input__input[type="number"]:focus + .q-input__formatter-value {
+  display: none;
 }
 
 input[placeholder] { text-overflow: ellipsis;}

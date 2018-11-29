@@ -1,0 +1,49 @@
+.q-toggleswitch__handle {
+  width: 40px;
+  height: 20px;
+  border-radius: 14px;
+}
+
+.q-toggleswitch__handle:after,
+.q-toggleswitch__handle:before {
+  border-radius: 20px;
+}
+
+.q-toggleswitch__handle:before {
+  height: 10px;
+  background: #ddd;
+}
+
+.q-toggleswitch__handle:after {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.q-toggleswitch__input:disabled + .q-toggleswitch__handle:before {
+  background: #eee;
+}
+
+.q-toggleswitch__input:disabled + .q-toggleswitch__handle:after {
+  border-color: #eee;
+}
+
+.q-toggleswitch__input:checked + .q-toggleswitch__handle:before {
+  background: #ccc;
+}
+
+.q-toggleswitch__input:checked + .q-toggleswitch__handle:after {
+  left: 20px;
+  background: #26a69a;
+  border-color: #26a69a;
+}
+
+.q-toggleswitch__input:disabled:checked + .q-toggleswitch__handle:before {
+  background-color: #eee;
+}
+
+.q-toggleswitch__input:disabled:checked + .q-toggleswitch__handle:after {
+  background-color: #ddd;
+  border-color: #ddd;
+}

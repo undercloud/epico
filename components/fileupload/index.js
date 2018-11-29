@@ -17,7 +17,7 @@ var QFileUpload = Paysage.createClass({
 		}
 	}),
 	phrases: {
-		dropFile: 'Drag and drop your file here, OR',
+		dropFile: 'Drag and drop your file here\n OR',
 		selectFile: 'Select File'
 	},
 	constructor () {
@@ -78,14 +78,18 @@ var QFileUpload = Paysage.createClass({
 						class="q-fileupload--no-pointer-events"></q-icon>	
 					<template v-if="draggable">
 						<span class="q-fileupload__label--draggable q-fileupload--no-pointer-events">{{ phrases.dropFile }}</span>
-						<q-button>
-							{{ phrases.selectFile }}
-							<input ` + fileHandle + ` />
-						</q-button>
+						<label>
+							<q-button>
+								{{ phrases.selectFile }}
+								<input ` + fileHandle + ` />
+							</q-button>
+						</label>
 					</template>
 					<template v-else>
-						<span class="q-fileupload__label">{{ phrases.selectFile }}</span>
-						<input ` + fileHandle + ` />
+						<label>
+							<span class="q-fileupload__label">{{ phrases.selectFile }}</span>
+							<input ` + fileHandle + ` />
+						</label>
 					</template>
 				</span>
 				<span v-for="(selectedFile, fileIndex) in selectedFilesList" class="q-fileupload__selected-file">
@@ -93,7 +97,7 @@ var QFileUpload = Paysage.createClass({
 						<q-icon name="icon-file-empty" size="medium"></q-icon>
 						<span class="q-fileupload__selected-file-extension">{{ helpers.fileExtension(selectedFile.name) }}</span>
 					</span>
-					<span>	
+					<span class="q-fileupload__selected-file-info">	
 						<span>
 							<span class="q-fileupload__selected-file-name">{{ selectedFile.name }}</span>
 							<span class="q-fileupload__selected-file-size">{{ helpers.humanFileSize(selectedFile.size) }} </span>

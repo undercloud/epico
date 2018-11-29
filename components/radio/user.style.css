@@ -1,0 +1,27 @@
+.q-radio__handle:before {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #26a69a;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.q-radio__input:disabled + .q-radio__handle:before {
+  border-color: #ddd;
+}
+
+.q-radio__input + .q-radio__handle:after {
+  border-radius: 50%;
+}
+
+.q-radio__input:checked + .q-radio__handle:after {
+  width: 10px;
+  height: 10px;
+  left: 5px;
+  top: 5px;
+  background-color: #26a69a;
+}
+
+.q-radio__input:disabled:checked + .q-radio__handle:after {
+  background-color: #ddd;
+}

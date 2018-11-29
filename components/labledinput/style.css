@@ -1,0 +1,23 @@
+.q-labledinput {
+	display: flex;
+	align-items: center;
+}
+
+.q-labledinput > .q-input {
+	flex-grow: 1;
+}
+
+.q-labledinput--with-before > .q-input {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.q-labledinput--with-after > .q-input {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.q-labledinput__before,
+.q-labledinput__after {
+  text-align: center;
+}

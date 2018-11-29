@@ -1,13 +1,10 @@
 .q-progress {
 	display: block;
+  position: relative;
 	width: 100%;
-	background: #ddd;
-	border-radius: 2px;
 }
 
 .q-progress__fill {
-	background: #26a69a;
-	height: 4px;
 	display: block;
 	border-radius: inherit;
 }
@@ -15,68 +12,45 @@
 .q-progress--circle {
 	display: inline-block;
 	position: relative;
-    padding: 0;
-    width: 5em;
-    height: 5em;
-    background-color: #ddd;
-    border-radius: 50%;
-    line-height: 5em;
+  border-radius: 50%;
 }
 
 .q-progress--circle:after {
-	content: "";
-    border: none;
-    position: absolute;
-    top: 0.25em;
-    left: 0.25em;
-    text-align: center;
-    display: block;
-    border-radius: 50%;
-    width: 4.5em;
-    height: 4.5em;
-    background-color: #fff;
+  content: '';
+  display: block;
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  text-align: center;
 }
 
 .q-progress--circle .q-progress__label {
-	position: absolute;
-    line-height: 5em;
-    width: 5em;
-    text-align: center;
-    display: block;
-    z-index: 2;
+  position: absolute;
+  text-align: center;
+  display: block;
+  z-index: 1;
 }
 
 .q-progress__clipper  {
-    border-radius: 50%;
-    width: 5em;
-    height: 5em;
-    position: absolute;
-    clip: rect(0, 5em, 5em, 2.5em);
+  position: absolute;
+  border-radius: 50%;
 }
 
 .q-progress--circle-over-50 .q-progress__clipper {
-    clip: rect(auto,auto,auto,auto);
+  clip: rect(auto,auto,auto,auto);
 }
 
 .q-progress__first-50-bar {
 	position: absolute;
-    clip: rect(0, 5em, 5em, 2.5em);
-    background-color: #26a69a;
-    border-radius: 50%;
-    width: 5em;
-    height: 5em;
+  border-radius: 50%;
 }
 
 .q-progress--circle:not(.q-progress--circle-over-50) .q-progress__first-50-bar {
-    display: none;
+  display: none;
 }
 
 .q-progress__fill-bar {
-    position: absolute;
-    clip: rect(0, 2.5em, 5em, 0);
-    width: 5em;
-    height: 5em;
-    border-radius: 50%;
-    border: 0.45em solid #26a69a;
-    box-sizing: border-box;
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 50%;
 }

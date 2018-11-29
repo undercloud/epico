@@ -23,9 +23,9 @@
 }
 
 .q-fileupload__handle--draggable {
-	border: 2px dashed #ddd;
-	border-radius: 5px;
-	padding: 30px 0;
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    padding: 25px 0;
 }
 
 .q-fileupload__handle--draggable-active {
@@ -33,29 +33,38 @@
 }
 
 .q-fileupload__label--draggable {
-	display: block;
-    margin: 25px 0;
-	white-space: pre-line;
+    display: block;
+    margin: 15px 0;
+    white-space: pre-line;
+    line-height: 30px;
 }
 
 .q-fileupload__input {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 150%;
     height: 100%;
     cursor: pointer;
     opacity: 0;
+    font-size: 0px;
 }
 
 .q-fileupload__selected-file {
-	display: block;
+	display: flex;
+    align-items: center;
 	margin: 10px 0;
 }
 
 .q-fileupload__selected-file-icon {
 	display: inline-block;
 	position: relative;
+	flex: 0 0 auto;
+}
+
+.q-fileupload__selected-file-info {
+	flex: 1 1 auto;
+    margin-left: 0.5em;
 }
 
 .q-fileupload__selected-file-extension {
@@ -71,9 +80,9 @@
 }
 
 .q-fileupload__selected-file-name {
-
+	vertical-align: middle;
 }
 
 .q-fileupload__selected-file-size {
-
+	vertical-align: middle;
 }

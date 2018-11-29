@@ -1,4 +1,5 @@
-import QAbstractInput from './../abstractinput';
+import QAbstractInput from './../abstractinput'
+import QValidator from './../validator'
 
 var QRadio = Paysage.createClass({
 	model: {
@@ -6,7 +7,12 @@ var QRadio = Paysage.createClass({
 	    event: 'change'
 	},
 	props: QAbstractInput.extendsProps({
-		checked: [Boolean, String],
+		checked: {
+            type: [Boolean, String],
+            validator (v) {
+                return QValidator.isBooleanOr(v, 'checked')
+            }
+        },
 		label: String,
 		modelValue: {
             default: undefined
@@ -14,24 +20,24 @@ var QRadio = Paysage.createClass({
 	}),
     get state () {
 	    if (this.modelValue === undefined) {
-    	    return this.checked;
+    	    return this.checked
     	}
 
-    	return ('' + this.modelValue === '' + this.value);
+    	return ('' + this.modelValue === '' + this.value)
 	},
     toggle (event) {
-		this.$emit('change', this.state ? '' : this.value, event);
+		this.$emit('change', this.state ? '' : this.value, event)
 	},
 	watch: {
         checked(newValue) {
             if (newValue !== this.state) {
-                this.toggle();
+                this.toggle()
             }
         }
     },
     mounted () {
     	if (this.checked && !this.state) {
-			this.toggle();
+			this.toggle()
         }
     },
 	draw () {
@@ -39,12 +45,12 @@ var QRadio = Paysage.createClass({
 			`<label class="q-radio">
 				<span class="q-radio__flex">
 					<input ` + QAbstractInput.draw(QAbstractInput.abstractProps, {
-						'class': 'q-radio__input', 
+						'class': 'q-radio__input',
 						'type': 'radio',
 						':checked': 'state',
 	      				'@change': 'toggle'
-					}) + ' />' +
-	      			`<slot :checked="state">
+					}) + ` />
+	      			<slot :checked="state" :disabled="disabled">
 	      				<span class="q-radio__handle"></span>
 					</slot>
 					<span v-if="label" class="q-radio__label">
@@ -52,8 +58,8 @@ var QRadio = Paysage.createClass({
 					</span>
 				</span>
 			</label>`
-		);
+		)
 	}
-});
+})
 
 export default QRadio;

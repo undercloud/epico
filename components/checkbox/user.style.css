@@ -1,0 +1,20 @@
+.q-checkbox__handle:before {
+  font-size: 14px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #26a69a;
+  color: #fff;
+  border-radius: 2px;
+}
+
+.q-checkbox__input:checked + .q-checkbox__handle:before {
+  background-color: #26a69a;
+}
+
+.q-checkbox__input:disabled:checked + .q-checkbox__handle:before {
+  background-color: #ddd;
+}
+
+.q-checkbox__input:disabled + .q-checkbox__handle:before {
+  border-color: #ddd;
+}
